@@ -1,5 +1,6 @@
 using System.Net.Sockets;
 using Microsoft.AspNetCore.Mvc;
+using TicketManagmentSystem.Models;
 
 namespace TicketManagmentSystem.Controllers
 {
@@ -7,6 +8,12 @@ namespace TicketManagmentSystem.Controllers
     [Route("api/tickets")]
     public class TicketsController : ControllerBase
     {
+        private readonly ITicketService _ticketService;
+        public TicketsController(ITicketService ticketService)
+        {
+            _ticketService = ticketService;
+        }
+
         public List<string> tickets = new List<string>() { "12345", "23456", "34567"};
         
         [HttpGet("{id}")]
@@ -19,6 +26,7 @@ namespace TicketManagmentSystem.Controllers
         [HttpGet]
         public IActionResult GetAllTickets()
         {
+            var tickets = _ticketService.GetAllTickets();
             return Ok(tickets);
         }
 
