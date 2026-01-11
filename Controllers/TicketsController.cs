@@ -39,11 +39,11 @@ namespace TicketManagmentSystem.Controllers
         }
 
         [HttpPatch("{id}")]
-        public IActionResult UpdateTicket(int id, [FromBody] Ticket ticket)
+        public IActionResult UpdateTicket(int id, [FromBody] UpdateTicketDto updateDto)
         {
-            var result = _ticketService.Update(id, ticket);
+            var result = _ticketService.Update(id, updateDto);
             if(!result) return NotFound();
-            return Ok(ticket);
+            return Ok(updateDto);
         }
 
         [HttpPost]

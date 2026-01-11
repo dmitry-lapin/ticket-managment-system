@@ -7,7 +7,7 @@ public interface ITicketService
     Ticket Create(Ticket ticket);
     Ticket? GetById(int id);
     bool Delete(int id);
-    bool Update(int id, Ticket UpdateTicket);
+    bool Update(int id, UpdateTicketDto updateDto);
     bool UseTicket(int id, TicketStatus UpdateTo);
 }
 
@@ -17,7 +17,7 @@ public class TicketService : ITicketService
 
     public Ticket Create(Ticket ticket)
     {
-        ticket.Id = _tickets.Count() > 0 ? ticket.Id = _tickets.Max(t => t.Id) + 1 : 1;
+        ticket.Id = _tickets.Count == 0 ? 1 : _tickets.Max(t => t.Id) + 1;
         _tickets.Add(ticket);
 
         return ticket;
@@ -36,14 +36,15 @@ public class TicketService : ITicketService
         return true;
     }
 
-    public bool Update(int id, Ticket UpdatedTicket)
+    public bool Update(int id, UpdateTicketDto updateDto)
     {
         var ticket = GetById(id);
         if (ticket == null) return false;
-        ticket.Title = UpdatedTicket.Title;
-        ticket.Description = UpdatedTicket.Description;
-        ticket.Priority = UpdatedTicket.Priority;
-        ticket.Status = UpdatedTicket.Status;
+        
+        if(updateDto.Title != null) ticket.Title = updateDto.Title;
+        if(updateDto.Description != null) ticket.Title = updateDto.Description;
+        if(updateDto.Priority.HasValue) ticket.Priority = updateDto.Priority.Value;
+        if(updateDto.Status.HasValue) ticket.Status = updateDto.Status.Value;
         
         return true;
     }
@@ -52,7 +53,7 @@ public class TicketService : ITicketService
     {
         var ticket = GetById(id);
         if(ticket == null ) return false;
-
+        if(ticket.Status == TicketStatus.Done) return false;
         ticket.Status = UpdateTo;
         return true;
     }
