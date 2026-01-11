@@ -1,3 +1,4 @@
+using System.Data;
 using System.Net.Sockets;
 using Microsoft.AspNetCore.Mvc;
 using TicketManagmentSystem.Models;
@@ -13,14 +14,13 @@ namespace TicketManagmentSystem.Controllers
         {
             _ticketService = ticketService;
         }
-
-        public List<string> tickets = new List<string>() { "12345", "23456", "34567"};
         
         [HttpGet("{id}")]
-        public IActionResult GetTicketById(string id)
+        public IActionResult GetTicketById(int id)
         { 
-            if(tickets.Contains(id))  return Ok("ticket was found");
-            else { return NotFound("Ticket wasn't found."); }
+            var ticket = _ticketService.GetById(id);
+            if(ticket == null) return NotFound();
+            else return Ok(ticket);
         }
 
         [HttpGet]
@@ -31,29 +31,34 @@ namespace TicketManagmentSystem.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteTicket(string id)
+        public IActionResult DeleteTicket(int id)
         {
-            tickets.Remove(id);
-            return Ok("Ticket was deleted.");
+            var result = _ticketService.Delete(id);
+            if(!result) return NotFound();
+            return NoContent();
         }
 
         [HttpPatch("{id}")]
-        public IActionResult UpdateTicket(string id)
+        public IActionResult UpdateTicket(int id, [FromBody] Ticket ticket)
         {
-            return Ok("ticket was updated.");
+            var result = _ticketService.Update(id, ticket);
+            if(!result) return NotFound();
+            return Ok(ticket);
         }
 
         [HttpPost]
-        public IActionResult CreateTicket()
+        public IActionResult CreateTicket([FromBody]Ticket ticket)
         {
-            
-            return Ok("Ticket was succesfully added to a chunk.");
+            var createdTicket = _ticketService.Create(ticket);
+            return CreatedAtAction(nameof(GetTicketById), new { id = createdTicket.Id}, createdTicket);
         }
         
         [HttpPost("{id}/use")]
-        public IActionResult UseTicket(string id)
+        public IActionResult UseTicket(int id, [FromQuery] TicketStatus status)
         {
-            return CreatedAtAction("", tickets);
+            var result = _ticketService.UseTicket(id, status);
+            if(!result) return NotFound();
+            return Ok(_ticketService.GetById(id));
         }
     }
 }
