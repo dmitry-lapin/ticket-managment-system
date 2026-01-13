@@ -16,49 +16,49 @@ namespace TicketManagmentSystem.Controllers
         }
         
         [HttpGet("{id}")]
-        public IActionResult GetTicketById(int id)
+        public async Task<IActionResult> GetTicketByIdAsync(int id)
         { 
-            var ticket = _ticketService.GetById(id);
+            var ticket = await _ticketService.GetByIdAsync(id);
             if(ticket == null) return NotFound();
             else return Ok(ticket);
         }
 
         [HttpGet]
-        public IActionResult GetAllTickets()
+        public async Task<IActionResult> GetAllTicketsAsync()
         {
-            var tickets = _ticketService.GetAllTickets();
+            var tickets = await _ticketService.GetAllTicketsAsync();
             return Ok(tickets);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteTicket(int id)
+        public async Task<IActionResult> DeleteTicketAsync(int id)
         {
-            var result = _ticketService.Delete(id);
+            var result = await _ticketService.DeleteAsync(id);
             if(!result) return NotFound();
             return NoContent();
         }
 
         [HttpPatch("{id}")]
-        public IActionResult UpdateTicket(int id, [FromBody] Ticket ticket)
+        public async Task<IActionResult> UpdateTicketAsync(int id, [FromBody] UpdateTicketDto updateDto)
         {
-            var result = _ticketService.Update(id, ticket);
+            var result = await _ticketService.UpdateAsync(id, updateDto);
             if(!result) return NotFound();
-            return Ok(ticket);
+            return Ok(updateDto);
         }
 
         [HttpPost]
-        public IActionResult CreateTicket([FromBody]Ticket ticket)
+        public async Task<IActionResult> CreateTicketAsync([FromBody]Ticket ticket)
         {
-            var createdTicket = _ticketService.Create(ticket);
-            return CreatedAtAction(nameof(GetTicketById), new { id = createdTicket.Id}, createdTicket);
+            var createdTicket = await _ticketService.CreateAsync(ticket);
+            return CreatedAtAction(nameof(GetTicketByIdAsync), new { id = createdTicket.Id}, createdTicket);
         }
         
         [HttpPost("{id}/use")]
-        public IActionResult UseTicket(int id, [FromQuery] TicketStatus status)
+        public async Task<IActionResult> UseTicketAsync(int id, [FromQuery] TicketStatus status)
         {
-            var result = _ticketService.UseTicket(id, status);
+            var result = await _ticketService.UseTicketAsync(id, status);
             if(!result) return NotFound();
-            return Ok(_ticketService.GetById(id));
+            return Ok(_ticketService.GetByIdAsync(id));
         }
     }
 }

@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
+builder.Services.AddDbContext<TicketDbContext>(options => options.UseInMemoryDatabase("TicketsDb"));
 builder.Services.AddSingleton<ITicketService, TicketService>();
 
 var app = builder.Build();

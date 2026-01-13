@@ -1,64 +1,76 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TicketManagmentSystem.Models;
 
 public interface ITicketService
 {
-    IEnumerable<Ticket> GetAllTickets();
-    Ticket Create(Ticket ticket);
-    Ticket? GetById(int id);
-    bool Delete(int id);
-    bool Update(int id, Ticket UpdateTicket);
-    bool UseTicket(int id, TicketStatus UpdateTo);
+    Task<IEnumerable<Ticket>> GetAllTicketsAsync();
+    Task<Ticket> CreateAsync(Ticket ticket);
+    Task<Ticket?> GetByIdAsync(int id);
+    Task<bool> DeleteAsync(int id);
+    Task<bool> UpdateAsync(int id, UpdateTicketDto updateDto);
+    Task<bool> UseTicketAsync(int id, TicketStatus UpdateTo);
 }
 
 public class TicketService : ITicketService 
 {
-    private List<Ticket> _tickets = new List<Ticket>();
+    private readonly TicketDbContext _context;
 
-    public Ticket Create(Ticket ticket)
+    public TicketService(TicketDbContext context)
     {
-        ticket.Id = _tickets.Count() > 0 ? ticket.Id = _tickets.Max(t => t.Id) + 1 : 1;
-        _tickets.Add(ticket);
+        _context = context;
+    }
 
+    public async Task<Ticket> CreateAsync(Ticket ticket)
+    {
+        _context.tickets.Add(ticket);
+        await _context.SaveChangesAsync();
         return ticket;
     }
 
-    public Ticket? GetById(int id)
+    public async Task<Ticket?> GetByIdAsync(int id)
     {
-        return _tickets.FirstOrDefault(ticket => ticket.Id == id);
+        return await _context.tickets.FirstOrDefaultAsync(t => t.Id == id);
     }
 
-    public bool Delete(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        var ticket = GetById(id);
+        var ticket = await GetByIdAsync(id);
         if ( ticket == null ) return false;
-        _tickets.Remove(ticket);
+
+        _context.tickets.Remove(ticket);
+        await _context.SaveChangesAsync();
         return true;
     }
 
-    public bool Update(int id, Ticket UpdatedTicket)
+    public async Task<bool> UpdateAsync(int id, UpdateTicketDto updateDto)
     {
-        var ticket = GetById(id);
+        var ticket = await GetByIdAsync(id);
         if (ticket == null) return false;
-        ticket.Title = UpdatedTicket.Title;
-        ticket.Description = UpdatedTicket.Description;
-        ticket.Priority = UpdatedTicket.Priority;
-        ticket.Status = UpdatedTicket.Status;
         
+        if(updateDto.Title != null) ticket.Title = updateDto.Title;
+        if(updateDto.Description != null) ticket.Description = updateDto.Description;
+        if(updateDto.Priority.HasValue) ticket.Priority = updateDto.Priority.Value;
+        if(updateDto.Status.HasValue) ticket.Status = updateDto.Status.Value;
+        
+        await _context.SaveChangesAsync();
         return true;
     }
 
-    public bool UseTicket(int id, TicketStatus UpdateTo)
+    public async Task<bool> UseTicketAsync(int id, TicketStatus UpdateTo)
     {
-        var ticket = GetById(id);
+        var ticket = await GetByIdAsync(id);
         if(ticket == null ) return false;
 
+        if(ticket.Status == TicketStatus.Done) return false;
         ticket.Status = UpdateTo;
+
+        await _context.SaveChangesAsync();
         return true;
     }
 
-    public IEnumerable<Ticket> GetAllTickets()
+    public async Task<IEnumerable<Ticket>> GetAllTicketsAsync()
     {
-        return _tickets;
+        return await _context.tickets.ToListAsync();
     }
 }
