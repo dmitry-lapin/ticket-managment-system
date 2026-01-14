@@ -34,7 +34,9 @@ namespace TicketManagmentSystem.Controllers
         public async Task<IActionResult> DeleteTicketAsync(int id)
         {
             var result = await _ticketService.DeleteAsync(id);
+
             if(!result) return NotFound();
+            
             return NoContent();
         }
 
@@ -42,8 +44,10 @@ namespace TicketManagmentSystem.Controllers
         public async Task<IActionResult> UpdateTicketAsync(int id, [FromBody] UpdateTicketDto updateDto)
         {
             var result = await _ticketService.UpdateAsync(id, updateDto);
+
             if(!result) return NotFound();
-            return Ok(updateDto);
+
+            return NoContent();
         }
 
         [HttpPost]
@@ -58,7 +62,7 @@ namespace TicketManagmentSystem.Controllers
             };
 
             var createdTicket = await _ticketService.CreateAsync(Ticket);
-            return CreatedAtAction(nameof(GetTicketByIdAsync), new { id = createdTicket.Id}, createdTicket);
+            return CreatedAtAction(nameof(GetTicketByIdAsync), new { id = createdTicket.Id }, createdTicket);
         }
         
         [HttpPost("{id}/use")]
