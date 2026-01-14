@@ -66,9 +66,9 @@ namespace TicketManagmentSystem.Controllers
         }
         
         [HttpPost("{id}/use")]
-        public async Task<IActionResult> UseTicketAsync(int id, [FromQuery] TicketStatus status)
+        public async Task<IActionResult> UseTicketAsync(int id, [FromBody]UseTicketDto UseDto)
         {
-            var result = await _ticketService.UseTicketAsync(id, status);
+            var result = await _ticketService.UseTicketAsync(id, UseDto.Status);
             if(!result) return NotFound();
             return Ok(_ticketService.GetByIdAsync(id));
         }
