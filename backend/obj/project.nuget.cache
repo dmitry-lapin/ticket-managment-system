@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eA9bmpAxPJEcsUPGsN1o/lugjNTEsOg8bP9Cn3eVa+lB/LyFx2glg6IurfvjkfXZx7F79Y23dJCpoEJEPi0qrg==",
+  "dgSpecHash": "po0+rIa7S8fBWaqbh126TUVIp5xvbJN0VPMCY6nwIeuKg6RJqnEQJaW6cWIk3LeIDHsP1OarEBNexanwfE64NA==",
   "success": true,
-  "projectFilePath": "D:\\Coursera\\C# Applications\\TicketManagmentSystem\\TicketManagmentSystem.csproj",
+  "projectFilePath": "D:\\Coursera\\C# Applications\\TicketManagmentSystem\\backend\\TicketManagmentSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lapin\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\lapin\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.4\\microsoft.aspnetcore.openapi.8.0.4.nupkg.sha512",

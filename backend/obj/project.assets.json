@@ -2706,11 +2706,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Coursera\\C# Applications\\TicketManagmentSystem\\TicketManagmentSystem.csproj",
+      "projectUniqueName": "D:\\Coursera\\C# Applications\\TicketManagmentSystem\\backend\\TicketManagmentSystem.csproj",
       "projectName": "TicketManagmentSystem",
-      "projectPath": "d:\\Coursera\\C# Applications\\TicketManagmentSystem\\TicketManagmentSystem.csproj",
+      "projectPath": "D:\\Coursera\\C# Applications\\TicketManagmentSystem\\backend\\TicketManagmentSystem.csproj",
       "packagesPath": "C:\\Users\\lapin\\.nuget\\packages\\",
-      "outputPath": "d:\\Coursera\\C# Applications\\TicketManagmentSystem\\obj\\",
+      "outputPath": "D:\\Coursera\\C# Applications\\TicketManagmentSystem\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lapin\\AppData\\Roaming\\NuGet\\NuGet.Config",
