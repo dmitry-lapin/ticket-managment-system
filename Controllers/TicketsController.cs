@@ -47,9 +47,17 @@ namespace TicketManagmentSystem.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTicketAsync([FromBody]Ticket ticket)
+        public async Task<IActionResult> CreateTicketAsync([FromBody]CreateTicketDto CreateDto)
         {
-            var createdTicket = await _ticketService.CreateAsync(ticket);
+            var Ticket = new Ticket
+            {
+                Title = CreateDto.Title,
+                Description = CreateDto.Description ?? string.Empty,
+                Priority = CreateDto.Priority,
+                Status = TicketStatus.Open
+            };
+
+            var createdTicket = await _ticketService.CreateAsync(Ticket);
             return CreatedAtAction(nameof(GetTicketByIdAsync), new { id = createdTicket.Id}, createdTicket);
         }
         
