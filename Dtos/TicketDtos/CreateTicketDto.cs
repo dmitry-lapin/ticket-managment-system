@@ -5,7 +5,7 @@ public class CreateTicketDto {
     [MaxLength(100)]
     public string Title { get; set; } = "";
     [MaxLength(500)]
-    public string? Description { get; set; }
+    public string? Description { get; set; } = "";
     [Range(1,5)]
     public int Priority { get; set; }
 }

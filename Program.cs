@@ -9,7 +9,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<TicketDbContext>(options => options.UseInMemoryDatabase("TicketsDb"));
-builder.Services.AddSingleton<ITicketService, TicketService>();
+builder.Services.AddScoped<ITicketService, TicketService>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
