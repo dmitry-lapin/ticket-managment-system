@@ -1,15 +1,13 @@
-import { useState } from 'react'
+import React from 'react'
 import './App.css'
 
-function App() {
-
+const App: React.FC = () => {
   return (
-    <>
-      <div>
-        
-      </div>
-    </>
-  )
+    <div className='p-4'>
+      <h1 className='text-2xl font-bold mb-4'>Ticket Managment</h1>
+      
+    </div>
+  );
 }
 
 export default App
