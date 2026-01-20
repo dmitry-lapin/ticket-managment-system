@@ -1,12 +1,12 @@
 import React from 'react'
 import './App.css'
+import Sidebar from './components/Sidebar/Sidebar.tsx';
 
 const App: React.FC = () => {
   return (
-    <div className='p-4'>
-      <h1 className='text-2xl font-bold mb-4'>Ticket Managment</h1>
-      
-    </div>
+    <main className='h-screen flex flex-row'>
+      <Sidebar/>
+    </main>
   );
 }
 
