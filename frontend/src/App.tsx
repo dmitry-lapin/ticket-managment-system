@@ -1,15 +1,13 @@
-import { useState } from 'react'
+import React from 'react'
 import './App.css'
+import Sidebar from './components/Sidebar/Sidebar.tsx';
 
-function App() {
-
+const App: React.FC = () => {
   return (
-    <>
-      <div>
-        
-      </div>
-    </>
-  )
+    <main className='h-screen flex flex-row'>
+      <Sidebar/>
+    </main>
+  );
 }
 
 export default App
