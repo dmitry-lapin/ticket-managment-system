@@ -8,7 +8,7 @@ const LogoHeader: React.FC = () => {
                 <span className="-rotate-45"><Ticket size={28} strokeWidth={2}/></span>
                 <span className="inter-logo font-semibold text-lg">TicketMS</span>
             </div>
-            <button className="">
+            <button className="btn-primary">
                 <SunMoon size={24} strokeWidth={1.5} />
             </button>
         </section>
