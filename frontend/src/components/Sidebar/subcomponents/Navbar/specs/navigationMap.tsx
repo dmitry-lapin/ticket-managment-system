@@ -7,14 +7,14 @@ type NavigationMapProps = {
 
 export const NavigationMap: React.FC<NavigationMapProps> = ({ items }) => {
   return (
-    <section className="space-y-3">
+    <section id="mapper">
       {items.map(item => {
         const Icon = item.icon
 
         return (
-          <NavLink key={item.path} to={item.path} className="nav-item flex flex-row space-x-2 items-center">
-            <Icon size={26} strokeWidth={1.5}/>
-            <span className="text-md">{item.title}</span>
+          <NavLink key={item.path} to={item.path} className="nav-item">
+            <Icon size={26} strokeWidth={1.4}/>
+            <span>{item.title}</span>
           </NavLink>
         )
       })}

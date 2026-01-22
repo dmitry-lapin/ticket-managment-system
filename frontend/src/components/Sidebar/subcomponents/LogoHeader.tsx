@@ -3,13 +3,13 @@ import { Ticket, SunMoon } from "lucide-react";
 
 const LogoHeader: React.FC = () => {
     return(
-        <section className="flex flex-row items-center justify-between">
-            <div className="flex flex-row items-center space-x-1">
-                <span className="-rotate-45"><Ticket size={28} strokeWidth={2}/></span>
-                <span className="inter-logo font-semibold text-lg">TicketMS</span>
+        <section className="logo-wrapper">
+            <div>
+                <span id="logo-svg"><Ticket size={30} strokeWidth={1.8}/></span>
+                <span id="logo-text">TMS</span>
             </div>
-            <button className="">
-                <SunMoon size={24} strokeWidth={1.5} />
+            <button id="theme-switch">
+                <SunMoon size={30} strokeWidth={1.2}/>
             </button>
         </section>
     );

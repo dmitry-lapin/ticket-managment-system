@@ -1,0 +1,14 @@
+.dark {
+  --color-bg-app: oklch(0.18 0.02 240);
+  --color-bg-surface: oklch(0.22 0.02 240);
+  --color-bg-surface-muted: oklch(0.26 0.02 240);
+
+  --color-border-default: oklch(0.35 0.02 240);
+  --color-border-subtle: oklch(0.3 0.02 240);
+
+  --color-text-primary: oklch(0.92 0.02 240);
+  --color-text-secondary: oklch(0.75 0.02 240);
+  --color-text-muted: oklch(0.6 0.02 240);
+
+  --color-accent-soft: oklch(0.3 0.06 250);
+}

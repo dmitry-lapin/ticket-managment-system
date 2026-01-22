@@ -6,7 +6,7 @@ import Profile from "./subcomponents/Profile";
 const Sidebar: React.FC = () => {
 
     return(
-        <section className="flex flex-col h-full p-6 bg-sky-300 space-y-7">
+        <section className="sidebar-wrapper">
             <LogoHeader/>
             <Navigation/>
             <Profile />

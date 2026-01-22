@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/* =========================
+   THEME VARIABLES
+   ========================= */
+
+@layer components {
+  
+}
+
+@theme {
+  /* ---------- COLORS ---------- */
+
+  /* Backgrounds */
+  --color-bg-app: oklch(0.98 0.01 240);
+  --color-bg-surface: oklch(1 0 0);
+  --color-bg-surface-muted: oklch(0.96 0.01 240);
+
+  /* Sidebar */
+  --color-bg-sidebar: oklch(0.4 0.1012 262.12);
+  --color-bg-sidebar-active: oklch(0.8 0.1012 262.12);
+  --color-bg-sidebar-active-bg: oklch(0.3 0.1012 262.12);
+  --color-border-sidebar: oklch(0.35 0.1012 262.12);
+
+  /* Borders */
+  --color-border-default: oklch(0.88 0.02 240);
+  --color-border-subtle: oklch(0.93 0.01 240);
+
+  /* Text */
+  --color-text-primary: oklch(0.95 0.02 240);
+  --color-text-secondary: oklch(0.35 0.02 240);
+  --color-text-muted: oklch(0.75 0.02 240);
+
+  /* Accent (blue) */
+  --color-accent: oklch(0.55 0.16 250);
+  --color-accent-hover: oklch(0.48 0.16 250);
+  --color-accent-soft: oklch(0.92 0.05 250);
+
+  /* Status */
+  --color-success: oklch(0.65 0.17 145);
+  --color-warning: oklch(0.75 0.16 80);
+  --color-danger: oklch(0.6 0.2 25);
+  --color-info: oklch(0.6 0.16 250);
+
+  /* ---------- RADIUS ---------- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* ---------- SHADOW ---------- */
+  --shadow-sm: 0 2px 6px rgb(0 0 0 / 0.06);
+  --shadow-md: 0 8px 24px rgb(0 0 0 / 0.12);
+
+  /* ---------- TRANSISTIONS ---- */
+}
