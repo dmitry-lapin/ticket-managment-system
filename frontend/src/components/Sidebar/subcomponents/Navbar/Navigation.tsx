@@ -9,7 +9,7 @@ export const Navigation: React.FC = () => {
     ]
 
     return (
-    <nav className="flex flex-col justify-between h-full">
+    <nav className="navigation-bar">
         {sections.map((items, index) => (
         <NavigationMap key={index} items={items} />
         ))}

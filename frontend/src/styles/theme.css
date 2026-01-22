@@ -5,9 +5,7 @@
    ========================= */
 
 @layer components {
-  .test {
-    @apply bg-red-300 text-white;
-  }
+  
 }
 
 @theme {
@@ -18,14 +16,20 @@
   --color-bg-surface: oklch(1 0 0);
   --color-bg-surface-muted: oklch(0.96 0.01 240);
 
+  /* Sidebar */
+  --color-bg-sidebar: oklch(0.4 0.1012 262.12);
+  --color-bg-sidebar-active: oklch(0.8 0.1012 262.12);
+  --color-bg-sidebar-active-bg: oklch(0.3 0.1012 262.12);
+  --color-border-sidebar: oklch(0.35 0.1012 262.12);
+
   /* Borders */
   --color-border-default: oklch(0.88 0.02 240);
   --color-border-subtle: oklch(0.93 0.01 240);
 
   /* Text */
-  --color-text-primary: oklch(0.18 0.02 240);
+  --color-text-primary: oklch(0.95 0.02 240);
   --color-text-secondary: oklch(0.35 0.02 240);
-  --color-text-muted: oklch(0.55 0.02 240);
+  --color-text-muted: oklch(0.75 0.02 240);
 
   /* Accent (blue) */
   --color-accent: oklch(0.55 0.16 250);
@@ -46,4 +50,6 @@
   /* ---------- SHADOW ---------- */
   --shadow-sm: 0 2px 6px rgb(0 0 0 / 0.06);
   --shadow-md: 0 8px 24px rgb(0 0 0 / 0.12);
+
+  /* ---------- TRANSISTIONS ---- */
 }

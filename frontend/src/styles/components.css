@@ -1,7 +1,69 @@
 @import "tailwindcss";
 
-@layer components {
-  btn-primary {
-    @apply border rounded shadow-md;
+@layer general {
+  main {
+    @apply h-screen flex flex-row text-text-primary;
   }
+}
+
+@layer sidebar {
+  .sidebar-wrapper {
+    @apply bg-bg-sidebar flex flex-col w-3/12 p-3 space-y-7 border-r border-border-sidebar;
+  }
+
+  .logo-wrapper{
+    @apply flex flex-row items-center px-3 pt-2 justify-between;
+  }
+
+  .logo-wrapper > div {
+    @apply flex flex-row items-center space-x-2;
+  }
+
+  .logo-wrapper > div > #logo-svg {
+    @apply -rotate-30;
+  }
+
+  .logo-wrapper > div > #logo-text {
+    @apply text-2xl font-medium italic;
+  }
+  
+  #theme-switch {
+    @apply rounded-sm p-1 text-text-primary;
+  }
+
+  .navigation-bar {
+    @apply flex flex-col justify-between h-full;
+  }
+
+  .navigation-bar > #mapper {
+    @apply space-y-1;
+  }
+
+  .navigation-bar > #mapper > .nav-item {
+    @apply flex flex-row space-x-2 items-center py-2 px-3 hover:text-bg-sidebar-active hover:bg-bg-sidebar-active-bg rounded-sm;
+  }
+
+  .navigation-bar > #mapper > .nav-item > span {
+    @apply font-light;
+  }
+
+  #profile-wrapper {
+    @apply flex flex-row justify-between px-3 pb-3 items-center;
+  }
+  
+  #profile-wrapper > #profile-description-wrapper {
+    @apply flex flex-row items-center text-sm space-x-1;
+  }
+
+  #profile-wrapper > #profile-description-wrapper > #profile-data-wrapper > #name {
+    @apply text-text-primary;
+  }
+
+  #profile-wrapper > #profile-description-wrapper >  #profile-data-wrapper > #email {
+    @apply text-text-muted;
+  }
+
+  #profile-wrapper > #LogoutBtn {
+    @apply text-text-primary hover:text-danger;
+  } 
 }
