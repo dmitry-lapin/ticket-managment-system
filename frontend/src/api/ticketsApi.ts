@@ -5,7 +5,7 @@ import type { UpdateTicketDto } from "../dtos/UpdateTicketDto";
 import type { UseTicketDto } from "../dtos/UseTicketDto";
 
 export const getTickets = async(): Promise<Ticket[]> => {
-    const response  = await api.get<Ticket[]>("./tickets");
+    const response  = await api.get<Ticket[]>("/tickets");
     return response.data;
 };
 
@@ -19,7 +19,7 @@ export const getTicketById = async (
 export const createTicket = async(
     dto: CreateTicketDto
     ): Promise<Ticket> => {
-        const response = await api.post<Ticket>(".tickets", dto);
+        const response = await api.post<Ticket>("/tickets", dto);
         return response.data;
 };
 

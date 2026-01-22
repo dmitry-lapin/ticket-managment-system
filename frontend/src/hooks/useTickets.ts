@@ -15,6 +15,7 @@ export function useTickets() {
     setIsLoading(true);
     try {
             const data = await getTickets();
+            console.log(Array.isArray(data), data);
             setTickets(data);
             setError(null);
         } catch(exeption) {
