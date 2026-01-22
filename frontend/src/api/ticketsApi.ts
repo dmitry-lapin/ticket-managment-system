@@ -19,7 +19,7 @@ export const getTicketById = async (
 export const createTicket = async(
     dto: CreateTicketDto
     ): Promise<Ticket> => {
-        const response = await api.post<Ticket>("/tickets", dto);
+        const response = await api.post<Ticket>("tickets", dto);
         return response.data;
 };
 
