@@ -23,7 +23,7 @@ const TicketsPage: React.FC = () => {
     }
 
     return (
-    <div>
+    <div className="text-black">
       <h1>Tickets</h1>
 
       {tickets.length === 0 ? (

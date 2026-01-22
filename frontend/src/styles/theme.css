@@ -24,12 +24,13 @@
 
   /* Borders */
   --color-border-default: oklch(0.88 0.02 240);
-  --color-border-subtle: oklch(0.93 0.01 240);
+  --color-border-subtle: oklch(0.8 0.01 240);
 
   /* Text */
   --color-text-primary: oklch(0.95 0.02 240);
   --color-text-secondary: oklch(0.35 0.02 240);
   --color-text-muted: oklch(0.75 0.02 240);
+  --color-text-subtle: oklch(0.7 0.01 240);
 
   /* Accent (blue) */
   --color-accent: oklch(0.55 0.16 250);

@@ -1,0 +1,12 @@
+  backend/database[m
+  backend/dto[m
+  backend/endpoints[m
+  backend/middleware[m
+  frontend/api[m
+  frontend/general[m
+  frontend/hooks[m
+  frontend/ui/design-pattern[m
+* [32mfrontend/ui/layout[m
+  frontend/ui/mainpage[m
+  frontend/ui/sidebar[m
+  main[m

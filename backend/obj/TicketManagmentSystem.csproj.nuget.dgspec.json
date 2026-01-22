@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Coursera\\C# Applications\\TicketManagmentSystem\\backend\\TicketManagmentSystem.csproj": {}
+    "D:\\Coursera\\Csharpapps\\TicketManagmentSystem\\backend\\TicketManagmentSystem.csproj": {}
   },
   "projects": {
-    "D:\\Coursera\\C# Applications\\TicketManagmentSystem\\backend\\TicketManagmentSystem.csproj": {
+    "D:\\Coursera\\Csharpapps\\TicketManagmentSystem\\backend\\TicketManagmentSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Coursera\\C# Applications\\TicketManagmentSystem\\backend\\TicketManagmentSystem.csproj",
+        "projectUniqueName": "D:\\Coursera\\Csharpapps\\TicketManagmentSystem\\backend\\TicketManagmentSystem.csproj",
         "projectName": "TicketManagmentSystem",
-        "projectPath": "D:\\Coursera\\C# Applications\\TicketManagmentSystem\\backend\\TicketManagmentSystem.csproj",
+        "projectPath": "D:\\Coursera\\Csharpapps\\TicketManagmentSystem\\backend\\TicketManagmentSystem.csproj",
         "packagesPath": "C:\\Users\\lapin\\.nuget\\packages\\",
-        "outputPath": "D:\\Coursera\\C# Applications\\TicketManagmentSystem\\backend\\obj\\",
+        "outputPath": "D:\\Coursera\\Csharpapps\\TicketManagmentSystem\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lapin\\AppData\\Roaming\\NuGet\\NuGet.Config",
