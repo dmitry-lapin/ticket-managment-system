@@ -1,12 +1,15 @@
 import React from "react";
 import { useTickets } from "../hooks/useTickets";
+import { TicketListItem } from "../components/TicketListItem/TicketListItem";
 
 const TicketsPage: React.FC = () => {
     const {
         tickets,
         isLoading,
         error,
-        reload
+        reload,
+        useTicket,
+        deleteTicket
     } = useTickets();
 
     if(isLoading) {
@@ -31,9 +34,13 @@ const TicketsPage: React.FC = () => {
       ) : (
         <ul>
           {tickets.map(ticket => (
-            <li key={ticket.id}>
-              #{ticket.id} — {ticket.status}
-            </li>
+            <TicketListItem
+            key={ticket.id}
+            ticket={ticket}
+            onUse={(id) => useTicket(id, { status: "Done" })}
+            onEdit={(id) => console.log("edit", id)}
+            onDelete={deleteTicket}
+        />
           ))}
         </ul>
       )}
