@@ -16,39 +16,38 @@ const TicketsPage: React.FC = () => {
 
     if(isLoading) {
         return <div>Loading Tickets...</div>;
-    }
-
-    if(error) {
-        return(
+    } else if (error) {
+      return(
             <div>
                 <p>Something went wrong...</p>
                 <button onClick={reload}>Reload</button>
             </div>
         );
-    }
+    } else {
+      return (
+      <section id="TicketsPageWrapper">
+        <section id="TicketsList">
+          <ul>
+            {tickets.map(ticket => (
+              <TicketListItem
+              key={ticket.id}
+              ticket={ticket}
+              onUse={(id) => useTicket(id, { status: "Done" })}
+              onEdit={(id) => console.log("edit", id)}
+              onDelete={deleteTicket}
+          />
+            ))}
+          </ul>
+        </section>
+        <section id="TicketsEditor">
+          <CreateTicketForm onCreate={createTicket} />
+        </section>
+        <section id="TicketSettings">
 
-    return (
-    <div className="text-black">
-      <h1>Tickets</h1>
-
-      {tickets.length === 0 ? (
-        <CreateTicketForm onCreate={createTicket} />
-      ) : (
-        
-        <ul>
-          {tickets.map(ticket => (
-            <TicketListItem
-            key={ticket.id}
-            ticket={ticket}
-            onUse={(id) => useTicket(id, { status: "Done" })}
-            onEdit={(id) => console.log("edit", id)}
-            onDelete={deleteTicket}
-        />
-          ))}
-        </ul>
-      )}
-    </div>
-  );
+        </section>
+      </section>
+    );
+  }
 };
 
 export default TicketsPage;

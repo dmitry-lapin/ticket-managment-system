@@ -4,6 +4,10 @@
   main {
     @apply h-screen flex flex-row;
   }
+
+  #main-content-wrapper {
+    @apply w-full;
+  }
 }
 
 @layer sidebar {
@@ -67,15 +71,25 @@
     @apply text-text-primary hover:text-danger;
   } 
 
-  #main-content-wrapper {
-    @apply w-full;
-  }
-
   #main-content-wrapper > header {
     @apply flex flex-row justify-between items-center border-b border-border-subtle px-8 py-5 font-medium text-text-subtle;
   }
 
   #main-content-wrapper > header > #header-user-data {
     @apply flex flex-row space-x-3;
+  }
+}
+
+@layer TicketsPage {
+  #TicketsPageWrapper {
+    @apply flex flex-row h-full;
+  }
+
+  #TicketsPageWrapper > #TicketsList, #TicketSettings {
+    @apply basis-3/12;
+  }
+
+  #TicketsPageWrapper > #TicketsEditor {
+    @apply basis-6/12;
   }
 }
