@@ -24,14 +24,15 @@ export function useTickets() {
         }
     }, []);
 
-    const createTicket = useCallback(async(dto: CreateTicketDto) => {
+    const createTicket = useCallback(async (dto: CreateTicketDto) => {
         try {
             const newTicket = await ticketsApi.createTicket(dto);
-            setTickets((prev) => [...prev, newTicket]);
-        } catch(exception) {
+            setTickets(prev => [...prev, newTicket]);
+        } catch {
             setError("Failed to create ticket.");
         }
-    },[]);
+    }, []);
+
 
     const updateTicket = useCallback(async(id: number, dto: UpdateTicketDto) => {
         try {
