@@ -1,12 +1,17 @@
 import React from "react";
 import { useTickets } from "../hooks/useTickets";
+import { TicketListItem } from "../components/TicketListItem/TicketListItem";
+import { CreateTicketForm } from "../components/CreateTicketForm/CreateTicketForm";
 
 const TicketsPage: React.FC = () => {
     const {
         tickets,
         isLoading,
         error,
-        reload
+        reload,
+        useTicket,
+        deleteTicket,
+        createTicket
     } = useTickets();
 
     if(isLoading) {
@@ -23,17 +28,22 @@ const TicketsPage: React.FC = () => {
     }
 
     return (
-    <div>
+    <div className="text-black">
       <h1>Tickets</h1>
 
       {tickets.length === 0 ? (
-        <p>No tickets found</p>
+        <CreateTicketForm onCreate={createTicket} />
       ) : (
+        
         <ul>
           {tickets.map(ticket => (
-            <li key={ticket.id}>
-              #{ticket.id} — {ticket.status}
-            </li>
+            <TicketListItem
+            key={ticket.id}
+            ticket={ticket}
+            onUse={(id) => useTicket(id, { status: "Done" })}
+            onEdit={(id) => console.log("edit", id)}
+            onDelete={deleteTicket}
+        />
           ))}
         </ul>
       )}

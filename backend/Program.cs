@@ -8,10 +8,23 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("FrontendDev", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddDbContext<TicketDbContext>(options => options.UseInMemoryDatabase("TicketsDb"));
 builder.Services.AddScoped<ITicketService, TicketService>();
 
 var app = builder.Build();
+
+app.UseCors("FrontendDev");
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
