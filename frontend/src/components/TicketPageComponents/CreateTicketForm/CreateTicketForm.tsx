@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import type { CreateTicketDto } from "../../dtos/CreateTicketDto";
+import type { CreateTicketDto } from "../../../dtos/CreateTicketDto";
 
 type Props = {
     onCreate: (dto: CreateTicketDto) => Promise<void>;
@@ -26,7 +26,7 @@ export const CreateTicketForm: React.FC<Props> = ({ onCreate }) => {
     }
     
     return(
-        <form onSubmit={submit} className="space-y-2 border p-4 rounded" id="createTicketForm">
+        <form onSubmit={submit} className="space-y-2 p-4 rounded" id="createTicketForm">
             <h2 className="font-semibold">Create Ticket</h2>
 
             <input

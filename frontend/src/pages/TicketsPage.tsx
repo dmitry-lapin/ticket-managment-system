@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTickets } from "../hooks/useTickets";
-import { TicketListItem } from "../components/TicketListItem/TicketListItem";
-import { CreateTicketForm } from "../components/CreateTicketForm/CreateTicketForm";
+import { CreateTicketForm } from "../components/TicketPageComponents/CreateTicketForm/CreateTicketForm";
+import TicketListComponent from "../components/TicketPageComponents/TicketList/TicketList";
+import type { Ticket } from "../types/ticket";
+
 
 const TicketsPage: React.FC = () => {
+    const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
+
     const {
         tickets,
         isLoading,
         error,
         reload,
+        createTicket,
+        updateTicket,
         useTicket,
-        deleteTicket,
-        createTicket
+        deleteTicket
+
     } = useTickets();
 
     if(isLoading) {
@@ -26,23 +32,13 @@ const TicketsPage: React.FC = () => {
     } else {
       return (
       <section id="TicketsPageWrapper">
-        <section id="TicketsList">
-          <ul>
-            {tickets.map(ticket => (
-              <TicketListItem
-              key={ticket.id}
-              ticket={ticket}
-              onUse={(id) => useTicket(id, { status: "Done" })}
-              onEdit={(id) => console.log("edit", id)}
-              onDelete={deleteTicket}
-          />
-            ))}
-          </ul>
+        <section id="TicketsListWrapper">
+          <TicketListComponent tickets={tickets} onDelete={deleteTicket} onUse={(id) => useTicket(id, {status: "Done"})} onSelect={setSelectedTicket} />
         </section>
-        <section id="TicketsEditor">
+        <section id="TicketsEditorWrapper">
           <CreateTicketForm onCreate={createTicket} />
         </section>
-        <section id="TicketSettings">
+        <section id="TicketSettingsWrapper">
 
         </section>
       </section>
