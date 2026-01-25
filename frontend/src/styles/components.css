@@ -4,11 +4,27 @@
   main {
     @apply h-screen flex flex-row;
   }
+
+  #main-content-wrapper {
+    @apply basis-10/12 h-full;
+  }
+
+  #main-content-wrapper > header {
+    @apply h-1/12 flex flex-row justify-between items-center px-8 py-5 border-b border-border-sidebar bg-bg-sidebar text-text-primary;
+  }
+
+  #main-content-wrapper > header > #header-user-data {
+    @apply flex flex-row space-x-3;
+  }
+
+  .sidebar-wrapper{
+    @apply basis-2/12;
+  }
 }
 
 @layer sidebar {
   .sidebar-wrapper {
-    @apply bg-bg-sidebar flex flex-col min-w-2/12 p-3 space-y-7 border-r border-border-sidebar text-text-primary;
+    @apply bg-bg-sidebar flex flex-col p-3 space-y-7 text-text-primary;
   }
 
   .logo-wrapper{
@@ -20,7 +36,7 @@
   }
 
   .logo-wrapper > div > #logo-svg {
-    @apply -rotate-30;
+    @apply p-1 rounded bg-white text-bg-sidebar;
   }
 
   .logo-wrapper > div > #logo-text {
@@ -66,16 +82,36 @@
   #profile-wrapper > #LogoutBtn {
     @apply text-text-primary hover:text-danger;
   } 
+}
 
-  #main-content-wrapper {
-    @apply w-full;
+@layer TicketsPage {
+  #TicketsPageWrapper {
+    @apply flex flex-row h-11/12;
   }
 
-  #main-content-wrapper > header {
-    @apply flex flex-row justify-between items-center border-b border-border-subtle px-8 py-5 font-medium text-text-subtle;
+  #TicketsPageWrapper > #TicketsListWrapper, #TicketSettingsWrapper {
+    @apply basis-3/12;
   }
 
-  #main-content-wrapper > header > #header-user-data {
-    @apply flex flex-row space-x-3;
+  #TicketsPageWrapper > #TicketsEditorWrapper {
+    @apply basis-6/12;
+  }
+
+  #TicketsListWrapper, #TicketsEditorWrapper {
+    @apply border-r border-border-default;
+  }
+}
+
+@layer TicketList {
+  #TicketListComponent {
+    @apply flex flex-col;
+  }
+
+  #TopicHeader { 
+    @apply p-4 border-b border-border-default;
+  }
+
+  #ticketsList {
+    @apply h-full;
   }
 }

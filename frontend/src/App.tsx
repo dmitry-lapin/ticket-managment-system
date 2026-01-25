@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css'
 
 import TicketsPage from './pages/TicketsPage.tsx';
-import MainPage from './components/MainPage/MainPage.tsx';
+import MainPage from './pages/MainPage.tsx';
 import { AppLayout } from './layout/appLayout.tsx';
 
 import { Routes, Route } from 'react-router';

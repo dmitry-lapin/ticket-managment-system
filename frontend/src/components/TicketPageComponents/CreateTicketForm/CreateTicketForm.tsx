@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import type { CreateTicketDto } from "../../dtos/CreateTicketDto";
+import type { CreateTicketDto } from "../../../dtos/CreateTicketDto";
 
 type Props = {
     onCreate: (dto: CreateTicketDto) => Promise<void>;
@@ -26,18 +26,20 @@ export const CreateTicketForm: React.FC<Props> = ({ onCreate }) => {
     }
     
     return(
-        <form onSubmit={submit} className="space-y-2 border p-4 rounded">
+        <form onSubmit={submit} className="space-y-2 p-4 rounded" id="createTicketForm">
             <h2 className="font-semibold">Create Ticket</h2>
 
             <input
                 value={title}
                 onChange={e => setTitle(e.target.value)}
-                placeholder="title"
+                placeholder="titleFormValue"
+                name="title"
                 required
             />
 
             <textarea
                 value={description}
+                name="descriptionFormValue"
                 onChange={e => setDescription(e.target.value)}
                 placeholder="Description"
             />
@@ -46,6 +48,7 @@ export const CreateTicketForm: React.FC<Props> = ({ onCreate }) => {
                 type="number"
                 min={1}
                 max={5}
+                name="priorityFormValue"
                 value={priority}
                 onChange={e => setPriority(Number(e.target.value))}
             />
