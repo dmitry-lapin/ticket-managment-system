@@ -14,8 +14,6 @@ const TicketsPage: React.FC = () => {
         error,
         reload,
         createTicket,
-        updateTicket,
-        useTicket,
         deleteTicket
 
     } = useTickets();
@@ -33,7 +31,7 @@ const TicketsPage: React.FC = () => {
       return (
       <section id="TicketsPageWrapper">
         <section id="TicketsListWrapper">
-          <TicketListComponent tickets={tickets} onDelete={deleteTicket} onUse={(id) => useTicket(id, {status: "Done"})} onSelect={setSelectedTicket} />
+          <TicketListComponent tickets={tickets} onDelete={deleteTicket} onSelect={setSelectedTicket} />
         </section>
         <section id="TicketsEditorWrapper">
           <CreateTicketForm onCreate={createTicket} />

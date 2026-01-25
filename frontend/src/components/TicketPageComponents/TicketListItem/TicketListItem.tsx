@@ -3,18 +3,16 @@ import type { Ticket } from "../../../types/ticket";
 type Props = {
     ticket: Ticket;
     onSelect: () => void;
-    onUse: () => void;
     onDelete: () => void;
 };
 
 export const TicketListItem: React.FC<Props> = ({
     ticket,
     onSelect,
-    onUse,
     onDelete
 }) => {
     return(
-        <li className="flex items-center justify-between border p-3 rounded" onClick={onSelect}>
+        <li className="flex items-center justify-between p-3 hover:bg-gray-200" onClick={onSelect}>
             <div>
                 <div className="font-semibold">
                     #{ticket.id} — {ticket.title}
@@ -25,10 +23,6 @@ export const TicketListItem: React.FC<Props> = ({
             </div>
 
             <div className="flex gap-2">
-                <button onClick={(e) => { e.stopPropagation(); onUse(); }}>
-                    Use
-                </button>
-
                 <button onClick={(e) => { e.stopPropagation(); onDelete(); }}>
                     Delete
                 </button>

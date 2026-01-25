@@ -8,14 +8,12 @@ type Props = {
   tickets: Ticket[];
 
   onSelect: (ticket: Ticket) => void;
-  onUse: (id: number) => void;
   onDelete: (id: number) => void;
 };
 
 const TicketListComponent: React.FC<Props> = ({
     tickets,
     onSelect,
-    onUse,
     onDelete
     }) => {
     
@@ -30,13 +28,12 @@ const TicketListComponent: React.FC<Props> = ({
                         </div>
                     </TopicHeader>
                     <section id="ticketsList">
-                        <ul className="space-y-2">
+                        <ul className="">
                             {tickets.map(ticket => (
                                 <TicketListItem
                                     key={ticket.id}
                                     ticket={ticket}
                                     onSelect={() => onSelect(ticket)}
-                                    onUse={() => onUse(ticket.id)}
                                     onDelete={() => onDelete(ticket.id)}
                                 />
                             ))}
