@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import type { CreateTicketDto } from "../../../dtos/CreateTicketDto";
+import type { CreateTicketDto } from "../../../../dtos/CreateTicketDto";
 
 type Props = {
     onCreate: (dto: CreateTicketDto) => Promise<void>;

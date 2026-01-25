@@ -13,7 +13,7 @@ export const NavigationMap: React.FC<NavigationMapProps> = ({ items }) => {
 
         return (
           <NavLink key={item.path} to={item.path} className="nav-item">
-            <Icon size={26} strokeWidth={1.4}/>
+            <Icon/>
             <span>{item.title}</span>
           </NavLink>
         )

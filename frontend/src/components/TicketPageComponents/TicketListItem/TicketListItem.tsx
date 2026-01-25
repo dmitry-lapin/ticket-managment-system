@@ -1,4 +1,5 @@
 import type { Ticket } from "../../../types/ticket";
+import { Trash } from 'lucide-react';
 
 type Props = {
     ticket: Ticket;
@@ -24,7 +25,7 @@ export const TicketListItem: React.FC<Props> = ({
 
             <div className="flex gap-2">
                 <button onClick={(e) => { e.stopPropagation(); onDelete(); }}>
-                    Delete
+                    <Trash/>
                 </button>
             </div>
         </li>

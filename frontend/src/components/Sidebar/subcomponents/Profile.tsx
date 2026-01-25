@@ -6,7 +6,7 @@ const Profile: React.FC = () => {
         <section id="profile-wrapper">
             <div id="profile-description-wrapper">
                 <div id="profile-picture-wrapper">
-                    <UserRoundPen size={32} strokeWidth={1.2}/>
+                    <UserRoundPen/>
                 </div>
                 <div id="profile-data-wrapper">
                     <p id="name">user</p>
@@ -14,7 +14,7 @@ const Profile: React.FC = () => {
                 </div>
             </div>
             <div id="LogoutBtn">
-                <LogOut size={23} strokeWidth={1.2}/>
+                <LogOut/>
             </div>
         </section>
     );

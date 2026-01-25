@@ -1,3 +1,21 @@
 @import "tailwindcss";
 @import './styles/theme.css';
-@import './styles/components.css'
+@import './styles/components.css';
+
+@layer icon-parameters-general {
+    .lucide {
+        stroke-width: 1.5px;
+    }
+}
+
+@layer icon-parameters-sidebar {
+    #logo-svg > .lucide {
+        height: 28px;
+        width: 28px;
+    }
+
+    #theme-switch > .lucide {
+        height: 28px;
+        width: 28px;
+    }
+}

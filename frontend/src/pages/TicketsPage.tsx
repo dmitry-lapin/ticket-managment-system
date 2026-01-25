@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTickets } from "../hooks/useTickets";
-import { CreateTicketForm } from "../components/TicketPageComponents/CreateTicketForm/CreateTicketForm";
+import { CreateTicketForm } from "../components/TicketPageComponents/TicketsEditorComponent/subcomponents/CreateTicketForm";
 import TicketListComponent from "../components/TicketPageComponents/TicketList/TicketList";
 import type { Ticket } from "../types/ticket";
 

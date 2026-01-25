@@ -12,10 +12,10 @@ export const AppLayout = () => {
             <p>Tickets</p>
           </div>
           <div id="header-user-data">
-            <span><MessageCircleMore size={28} strokeWidth={1.8} /></span>
-            <span><Phone size={28} strokeWidth={1.8} /></span>
-            <span><Bell size={28} strokeWidth={1.8} /></span>
-            <span><UserRoundPen size={28} strokeWidth={1.8} /></span>
+            <span><MessageCircleMore/></span>
+            <span><Phone/></span>
+            <span><Bell/></span>
+            <span><UserRoundPen/></span>
           </div>
         </header>
         <Outlet />
