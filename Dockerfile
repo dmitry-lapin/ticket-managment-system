@@ -1,44 +1,35 @@
-# ===== STAGE 1: build front + back =====
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /src
-
-# 1. Копируем csproj и package.json отдельно (чтобы кешировать restore/install)
-COPY backend/TicketManagmentSystem.csproj backend/
-COPY frontend/package.json frontend/
-COPY frontend/package-lock.json frontend/ 
-
-# 2. Восстанавливаем .NET зависимости
-RUN dotnet restore backend/TicketManagmentSystem.csproj
-
-# 3. Ставим Node + npm (в sdk образе уже есть, если нет — можно добавить)
-# Для надёжности можно зафиксировать версию Node через nvm, но для начала оставим так
-
-# 4. Копируем остальной код
-COPY backend/ backend/
-COPY frontend/ frontend/
-
-# 5. Сборка фронта
+# ===== STAGE 1: Build Frontend (Vite) =====
+FROM node:20-alpine AS frontend
 WORKDIR /src/frontend
-RUN npm ci && npm run build
 
-# 6. Копируем build фронта в wwwroot бекенда
+# Копируем зависимости для кеширования
+COPY frontend/package*.json ./
+RUN npm ci
+
+# Копируем исходники и билдим
+COPY frontend/ .
+RUN npm run build
+
+# ===== STAGE 2: Build Backend (.NET 8) =====
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS backend
 WORKDIR /src
-RUN mkdir -p backend/wwwroot \
-    && cp -r frontend/build/* backend/wwwroot/
 
-# 7. Публикация .NET приложения (Release)
+# Restore .NET
+COPY backend/TicketManagmentSystem.csproj backend/
+RUN dotnet restore backend/TicketManagmentSystem.csproj
+COPY backend/ backend/
+
+# 🔥 КОПИРУЕМ VIT E BUILD (dist/)
+RUN mkdir -p backend/wwwroot
+COPY --from=frontend /src/frontend/dist/ backend/wwwroot/
+
+# Публикуем
 RUN dotnet publish backend/TicketManagmentSystem.csproj -c Release -o /app/publish
 
-# ===== STAGE 2: runtime =====
+# ===== STAGE 3: Runtime =====
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
-
-COPY --from=build /app/publish .
-
-# Порт, на котором слушает приложение (если у тебя в Program.cs/Kestrel другой, поправь)
-EXPOSE 5052
-
-# Переменная окружения ASP.NET Core
+COPY --from=backend /app/publish .
+EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
-
 ENTRYPOINT ["dotnet", "TicketManagmentSystem.dll"]

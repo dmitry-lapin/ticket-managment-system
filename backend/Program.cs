@@ -39,16 +39,18 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
-
-
+app.UseStaticFiles(); // 🔥 отдаёт wwwroot (React файлы)
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id}"
 );
 
+app.MapFallbackToFile("index.html");
 
 app.Run();
