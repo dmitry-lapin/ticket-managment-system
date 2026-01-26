@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useTickets } from "../hooks/useTickets";
-import { CreateTicketForm } from "../components/TicketPageComponents/CreateTicketForm/CreateTicketForm";
 import TicketListComponent from "../components/TicketPageComponents/TicketList/TicketList";
 import type { Ticket } from "../types/ticket";
+import TicketsEditorComponent from "../components/TicketPageComponents/TicketsEditorComponent/TicketsEditorComponent";
 
 
 const TicketsPage: React.FC = () => {
@@ -13,9 +13,9 @@ const TicketsPage: React.FC = () => {
         isLoading,
         error,
         reload,
+        deleteTicket,
         createTicket,
-        deleteTicket
-
+        updateTicket
     } = useTickets();
 
     if(isLoading) {
@@ -34,7 +34,19 @@ const TicketsPage: React.FC = () => {
           <TicketListComponent tickets={tickets} onDelete={deleteTicket} onSelect={setSelectedTicket} />
         </section>
         <section id="TicketsEditorWrapper">
-          <CreateTicketForm onCreate={createTicket} />
+          <TicketsEditorComponent
+            ticket={selectedTicket}
+            onCreate={createTicket}
+            onUpdate={(ticket) =>
+              updateTicket(ticket.id, {
+                title: ticket.title,
+                description: ticket.description,
+                priority: ticket.priority,
+                status: ticket.status,
+              })
+            }
+            onFinish={() => setSelectedTicket(null)}
+          />
         </section>
         <section id="TicketSettingsWrapper">
 

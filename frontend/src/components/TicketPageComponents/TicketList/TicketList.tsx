@@ -2,7 +2,10 @@ import React from "react";
 import TopicHeader from "../../ReusableComponents/TopicHeader";
 import { TicketListItem } from "../TicketListItem/TicketListItem";
 
+import { TextAlignStart, SlidersHorizontal } from 'lucide-react';
+
 import type { Ticket } from "../../../types/ticket";
+import EmptyState from "./subcomponents/EmptyState";
 
 type Props = {
   tickets: Ticket[];
@@ -16,19 +19,20 @@ const TicketListComponent: React.FC<Props> = ({
     onSelect,
     onDelete
     }) => {
+        const hasTickets = tickets.length > 0;
     
-        if(tickets.length === 0) {
-            return <p>No tickets found!</p>
-        } else {
             return(
                 <section id="TicketListComponent">
                     <TopicHeader>
                         <div>
+                            <TextAlignStart/>
                             <p>My Tickets</p>
                         </div>
+                            <SlidersHorizontal/>
                     </TopicHeader>
                     <section id="ticketsList">
-                        <ul className="">
+                        { hasTickets? (
+                            <ul className="">
                             {tickets.map(ticket => (
                                 <TicketListItem
                                     key={ticket.id}
@@ -38,10 +42,12 @@ const TicketListComponent: React.FC<Props> = ({
                                 />
                             ))}
                         </ul>
+                        ) : (
+                            <EmptyState />
+                        )}
                     </section>
                 </section>
             );
-        }
     }
 
 export default TicketListComponent;

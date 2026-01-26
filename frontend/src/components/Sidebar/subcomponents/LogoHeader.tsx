@@ -5,11 +5,11 @@ const LogoHeader: React.FC = () => {
     return(
         <section className="logo-wrapper">
             <div>
-                <span id="logo-svg"><Ticket size={30} strokeWidth={1.8}/></span>
+                <span id="logo-svg"><Ticket/></span>
                 <span id="logo-text">TMS</span>
             </div>
             <button id="theme-switch">
-                <SunMoon size={30} strokeWidth={1.2}/>
+                <SunMoon/>
             </button>
         </section>
     );

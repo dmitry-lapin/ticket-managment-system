@@ -103,12 +103,16 @@
 }
 
 @layer TicketList {
-  #TicketListComponent {
+  #TicketListComponent, #TicketsEditorComponent {
     @apply flex flex-col;
   }
 
   #TopicHeader { 
-    @apply p-4 border-b border-border-default;
+    @apply flex flex-row items-center justify-between py-4 px-3 border-b border-border-default font-medium;
+  }
+
+  #TopicHeader > div {
+    @apply flex flex-row space-x-1 items-center;
   }
 
   #ticketsList {
