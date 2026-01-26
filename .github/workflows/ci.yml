@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ===== FRONTEND =====
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install frontend deps
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: ./frontend
+        run: npm run build
+
+      # ===== BACKEND (.NET 8) =====
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore backend
+        working-directory: ./backend
+        run: dotnet restore
+
+      - name: Build backend
+        working-directory: ./backend
+        run: dotnet build TicketManagmentSystem.csproj --configuration Release --no-restore
+
+      # Если тесты в отдельном проекте, поправь рабочую директорию и команду
+      # - name: Test backend
+      # working-directory: ./backend
+      # run: dotnet test --configuration Release --no-build
