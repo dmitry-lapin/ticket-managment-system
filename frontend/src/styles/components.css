@@ -103,7 +103,7 @@
 }
 
 @layer TicketList {
-  #TicketListComponent {
+  #TicketListComponent, #TicketsEditorComponent {
     @apply flex flex-col;
   }
 
