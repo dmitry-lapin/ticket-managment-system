@@ -1,44 +1,40 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import TopicHeader from "../../ReusableComponents/TopicHeader";
-import type { Ticket } from "../../../types/ticket";
 
-interface TicketsEditorProps {
-  ticket: Ticket | null;
-  onCreate: (data: Omit<Ticket, "id">) => void;
-  onUpdate: (ticket: Ticket) => void;
-  onFinish: () => void;
-}
+import { useTicketsContext } from "../../../context/TicketsContext";
 
-const TicketsEditorComponent: React.FC<TicketsEditorProps> = ({
-  ticket,
-  onFinish,
-  onCreate,
-  onUpdate,
-}) => {
+const TicketsEditorComponent: React.FC = () => {
+  const {
+    selectedTicket,
+    createTicket,
+    updateTicket,
+    selectTicket,
+  } = useTicketsContext();
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   useEffect(() => {
-    if (ticket) {
-      setTitle(ticket.title);
-      setDescription(ticket.description ?? "");
+    if (selectedTicket) {
+      setTitle(selectedTicket.title);
+      setDescription(selectedTicket.description ?? "");
     } else {
       setTitle("");
       setDescription("");
     }
-  }, [ticket]);
+  }, [selectedTicket]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!title.trim()) return;
 
-    if (ticket) {
-      onUpdate({
-        ...ticket,
+    if (selectedTicket) {
+      await updateTicket({
+        ...selectedTicket,
         title,
         description,
       });
     } else {
-      onCreate({
+      await createTicket({
         title,
         description,
         priority: 1,
@@ -46,13 +42,13 @@ const TicketsEditorComponent: React.FC<TicketsEditorProps> = ({
       });
     }
 
-    onFinish();
+    selectTicket(null);
   };
 
   return (
     <section id="TicketEditorComponent">
       <TopicHeader>
-        {ticket ? "Edit ticket:" : "Create a ticket:"}
+        {selectedTicket ? "Edit ticket:" : "Create a ticket:"}
       </TopicHeader>
 
       <section id="ticketsEditor" className="flex flex-col gap-2">
@@ -74,7 +70,7 @@ const TicketsEditorComponent: React.FC<TicketsEditorProps> = ({
           className="bg-blue-500 text-white px-4 py-2 self-start"
           onClick={handleSubmit}
         >
-          {ticket ? "Save changes" : "Create ticket"}
+          {selectedTicket ? "Save changes" : "Create ticket"}
         </button>
       </section>
     </section>

@@ -17,6 +17,7 @@ export function useTickets() {
             const data = await getTickets();
             setTickets(data);
             setError(null);
+            console.log("tickets from hook:", tickets, typeof(tickets));
         } catch(exeption) {
             setError("Failed to load tickets.");
         } finally {
@@ -34,14 +35,15 @@ export function useTickets() {
     }, []);
 
 
-    const updateTicket = useCallback(async(id: number, dto: UpdateTicketDto) => {
-        try {
-            const updatedTicket = await ticketsApi.updateTicket(id, dto);
-            setTickets((prev) => prev.map((ticket) => (ticket.id === id ? updatedTicket : ticket)));
-        } catch(exception) {
-            setError("Failed to update ticket");
-        }
-    },[]);
+    const updateTicket = useCallback(
+        async (id: number, dto: UpdateTicketDto) => {
+        const updated = await ticketsApi.updateTicket(id, dto);
+
+        setTickets(prev =>
+            prev.map(t => (t.id === id ? updated : t))
+        );
+        },[]
+    );
 
     const useTicket = useCallback(async(id: number, dto: UseTicketDto) => {
         try {

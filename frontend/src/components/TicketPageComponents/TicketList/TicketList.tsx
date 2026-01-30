@@ -1,53 +1,43 @@
 import React from "react";
 import TopicHeader from "../../ReusableComponents/TopicHeader";
 import { TicketListItem } from "../TicketListItem/TicketListItem";
-
-import { TextAlignStart, SlidersHorizontal } from 'lucide-react';
-
-import type { Ticket } from "../../../types/ticket";
+import { TextAlignStart, SlidersHorizontal } from "lucide-react";
 import EmptyState from "./subcomponents/EmptyState";
+import { useTicketsContext } from "../../../context/TicketsContext";
 
-type Props = {
-  tickets: Ticket[];
+const TicketListComponent: React.FC = () => {
+  const { tickets, selectTicket, deleteTicket } = useTicketsContext();
 
-  onSelect: (ticket: Ticket) => void;
-  onDelete: (id: number) => void;
+  if (!Array.isArray(tickets) || tickets.length === 0) {
+    return <EmptyState />;
+  }
+
+  console.log(tickets.map(t => ({ id: t.id, title: t.title })));
+
+  return (
+    <section id="TicketListComponent">
+      <TopicHeader>
+        <div className="flex items-center gap-2">
+          <TextAlignStart />
+          <p>My Tickets</p>
+        </div>
+        <SlidersHorizontal />
+      </TopicHeader>
+
+      <section id="ticketsList">
+          <ul>
+            {tickets.map(ticket => (
+              <TicketListItem
+                key={ticket.id}
+                ticket={ticket}
+                onSelect={() => selectTicket(ticket)}
+                onDelete={() => deleteTicket(ticket.id)}
+              />
+            ))}
+          </ul>
+      </section>
+    </section>
+  );
 };
-
-const TicketListComponent: React.FC<Props> = ({
-    tickets,
-    onSelect,
-    onDelete
-    }) => {
-        const hasTickets = tickets.length > 0;
-    
-            return(
-                <section id="TicketListComponent">
-                    <TopicHeader>
-                        <div>
-                            <TextAlignStart/>
-                            <p>My Tickets</p>
-                        </div>
-                            <SlidersHorizontal/>
-                    </TopicHeader>
-                    <section id="ticketsList">
-                        { hasTickets? (
-                            <ul className="">
-                            {tickets.map(ticket => (
-                                <TicketListItem
-                                    key={ticket.id}
-                                    ticket={ticket}
-                                    onSelect={() => onSelect(ticket)}
-                                    onDelete={() => onDelete(ticket.id)}
-                                />
-                            ))}
-                        </ul>
-                        ) : (
-                            <EmptyState />
-                        )}
-                    </section>
-                </section>
-            );
-    }
 
 export default TicketListComponent;
